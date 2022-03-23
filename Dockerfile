@@ -1,4 +1,4 @@
-FROM python:alpine3.14
+FROM python:alpine3.15
 
 ENV PYTHONUNBUFFERED 1
 
@@ -8,6 +8,7 @@ RUN apk add --update --no-cache --virtual .tmp-build-deps \
     gcc libc-dev linux-headers postgresql-dev musl-dev zlib zlib-dev
 RUN pip install -r /requirements.txt
 RUN apk del .tmp-build-deps
+RUN pip install Pillow
 
 RUN mkdir /app
 WORKDIR /app
